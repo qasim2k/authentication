@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:math';
+import 'package:authentication/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -37,37 +39,40 @@ class _signupState extends State<signup> {
     super.dispose();
   }
 
-
-// static createUserInFireStore(String email, var userData) async {
-//     await FirebaseFirestore.instance
-//         .collection('users')
-//         .doc(FirebaseAuth.instance.currentUser!.email)
-//         .set({
-//           'name': name, // John Doe
-//           'contact': contact, // Stokes and Sons
-//           'age': age, // 42
-//           'images': imgurl,
-//         });
-//   }
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-  Future<void> addUser() async{
-    final imgurl = await uploadimg(_image!);
-    return users
-        .add({
-          'name': name, // John Doe
-          'contact': contact, // Stokes and Sons
-          'age': age, // 42
+  static addUser(String e,String n,String c, String a, String imgurl) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(e)
+        .set({
+          'name': n, // John Doe 
+          'contact': c, // Stokes and Sons
+          'age': a, // 42
           'images': imgurl,
-        })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+        });
   }
+
+  // CollectionReference users = FirebaseFirestore.instance.collection('users');
+  // Future<void> addUser() async{
+  //   final imgurl = await uploadimg(_image!);
+  //   return users
+  //       .add({
+  //         'name': name, // John Doe 
+  //         'contact': contact, // Stokes and Sons
+  //         'age': age, // 42
+  //         'images': imgurl,
+  //       })
+  //       .then((value) => print("User Added"))
+  //       .catchError((error) => print("Failed to add user: $error"));
+  // }
+
+   
 
   registration() async {
     if (email != null) {
       try {
         await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: pass);
+            //Get.to(login());
         //  print('not Passed');
 
       } catch (ex) {
@@ -340,7 +345,7 @@ class _signupState extends State<signup> {
                           SizedBox(height: 12),
                           ElevatedButton(
                             child: Text("signup"),
-                            onPressed: () {
+                            onPressed: () async {
                               if (_formkey.currentState!.validate()) {
                                 setState(() {
                                   email = emailcontroler.text;
@@ -349,7 +354,8 @@ class _signupState extends State<signup> {
                                   contact = contactcontroler.text;
                                   age = agecontroler.text;
                                 });
-                                registration().whenComplete(() => addUser());
+                                final imgurl = await uploadimg(_image!);
+                                registration().whenComplete(() => addUser(email!,name!,contact!,age!, imgurl!));
                               }
                               // Get.to(home());
                             },

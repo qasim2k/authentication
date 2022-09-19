@@ -48,12 +48,12 @@ class _profileState extends State<profile> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 166, 210, 252),
-                  Color.fromARGB(255, 238, 216, 209)
+                  Color.fromARGB(255, 10, 86, 157),
+                  Color.fromARGB(255, 239, 163, 140)
                 ],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                stops: [0.5, 0.9],
+                stops: [0.3, 0.6],
               ),
             ),
             child: Column(
@@ -77,28 +77,28 @@ class _profileState extends State<profile> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 219, 171, 207),
-                      minRadius: 35.0,
+                      backgroundColor:  Color.fromARGB(174, 42, 55, 109),
+                      minRadius: 17.0,
                       child: InkWell(
                         onTap: () {
                           Get.to(login());
                         },
                         child: Icon(
                           Icons.arrow_back,
-                          size: 30.0,
+                          size: 20.0,
                         ),
                       ),
                     ),
                     CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 219, 171, 207),
-                      minRadius: 35.0,
+                      backgroundColor: Color.fromARGB(174, 42, 55, 109),
+                      minRadius: 17.0,
                       child: Icon(
                         Icons.call,
-                        size: 30.0,
+                        size: 20.0,
                       ),
                     ),
                     CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 219, 171, 207),
+                      backgroundColor: Color.fromARGB(255, 183, 110, 2),
                       minRadius: 60.0,
                       child: CircleAvatar(
                         radius: 50.0,
@@ -108,11 +108,18 @@ class _profileState extends State<profile> {
                       ),
                     ),
                     CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 219, 171, 207),
-                      minRadius: 35.0,
+                      backgroundColor: Color.fromARGB(255, 135, 86, 107),
+                      minRadius: 17.0,
                       child: Icon(
                         Icons.message,
-                        size: 30.0,
+                        size: 20.0,
+                      ),
+                    ),CircleAvatar(
+                      backgroundColor: Color.fromARGB(255, 135, 86, 107),
+                      minRadius: 17.0,
+                      child: Icon(
+                        Icons.video_library_outlined,
+                        size: 20.0,
                       ),
                     ),
                   ],
@@ -121,17 +128,17 @@ class _profileState extends State<profile> {
                   height: 10,
                 ),
                 Text(
-                  'Leonardo Palmeiro',
+                  data!['name'],
                   style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 230, 21, 21),
                   ),
                 ),
                 Text(
                   'Flutter Developer',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 230, 10, 10),
                     fontSize: 35,
                   ),
                 ),
@@ -143,7 +150,7 @@ class _profileState extends State<profile> {
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    color: Color.fromARGB(255, 187, 168, 162),
+                    color: Color.fromARGB(255, 239, 4, 133),
                     child: ListTile(
                       title: Text(
                         '5000',
@@ -151,7 +158,7 @@ class _profileState extends State<profile> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 244, 243, 246),
                         ),
                       ),
                       subtitle: Text(
@@ -167,7 +174,7 @@ class _profileState extends State<profile> {
                 ),
                 Expanded(
                   child: Container(
-                    color: Color.fromARGB(255, 250, 222, 222),
+                    color: Color.fromARGB(255, 97, 7, 222),
                     child: ListTile(
                       title: Text(
                         '5000',
@@ -195,7 +202,9 @@ class _profileState extends State<profile> {
           Container(
             child: Column(
               children: <Widget>[
-                Divider(),
+                 Image(
+            image: AssetImage('assets/images/mypic.jpeg'),)
+               // Divider(),
               ],
             ),
           )
