@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,31 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+  Map? data;
+  fetchdata() {
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection //(teach == false? 'students': 'users');
+        ('users');
+
+    collectionReference
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .snapshots()
+        .listen((snapshot) {
+      setState(() {
+        data = snapshot.data() as Map?;
+      });
+
+      print("jkjkjkjkjkjkjkj");
+      print(data.toString());
+    });
+  }
+
+  @override
+  void initState() {
+    fetchdata();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,8 +102,9 @@ class _profileState extends State<profile> {
                       minRadius: 60.0,
                       child: CircleAvatar(
                         radius: 50.0,
-                        backgroundImage: NetworkImage(
-                            'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'),
+                        backgroundImage: NetworkImage(data == null
+                            ? 'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'
+                            : data!['images']),
                       ),
                     ),
                     CircleAvatar(
@@ -167,7 +194,8 @@ class _profileState extends State<profile> {
           ),
           Container(
             child: Column(
-              children: <Widget>[   Divider(),  
+              children: <Widget>[
+                Divider(),
               ],
             ),
           )
