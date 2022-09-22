@@ -23,10 +23,16 @@ class _profileState extends State<profile> {
         .doc(FirebaseAuth.instance.currentUser!.email)
         .snapshots()
         .listen((snapshot) {
+          if(snapshot.data()==null){
+           CircularProgressIndicator();
+          }
+
+          else{
       setState(() {
+
         data = snapshot.data() as Map?;
       });
-
+          }
       print("jkjkjkjkjkjkjkj");
       print(data.toString());
     });
@@ -34,6 +40,7 @@ class _profileState extends State<profile> {
 
   @override
   void initState() {
+    
     fetchdata();
     super.initState();
   }

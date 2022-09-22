@@ -2,7 +2,6 @@
 import 'package:authentication/profile.dart';
 import 'package:authentication/resetpass.dart';
 import 'package:authentication/signup.dart';
-import 'package:authentication/user/usermain.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -144,6 +143,7 @@ Get.to(profile());
             );
                             return('enter 4 digit password');
                           }
+                          return null;
                         },
                   ),
                 ),
@@ -173,6 +173,7 @@ Get.to(profile());
                           EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
+                      // ignore: deprecated_member_use
                       primary: Color.fromRGBO(103, 58, 183, 1)),
                 ),
                 SizedBox(height: 12),
@@ -186,6 +187,7 @@ Get.to(profile());
                           EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
+                      // ignore: deprecated_member_use
                       primary: Colors.deepPurple),
                 ),
                 

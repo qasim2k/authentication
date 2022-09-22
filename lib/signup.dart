@@ -1,13 +1,12 @@
+// ignore_for_file: deprecated_member_use, duplicate_ignore
+
 import 'dart:io';
-import 'dart:math';
-import 'package:authentication/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import 'login.dart';
@@ -210,6 +209,7 @@ class _signupState extends State<signup> {
                               } else if (!value.contains('@')) {
                                 return ('enter valid email');
                               }
+                              return null;
                             },
                           ),
                           SizedBox(
@@ -246,6 +246,7 @@ class _signupState extends State<signup> {
                                 } else if (value.length < 4) {
                                   return ('password must be greater then 4 digits');
                                 }
+                                return null;
                               },
                             ),
                           ),
@@ -275,6 +276,7 @@ class _signupState extends State<signup> {
                                 // );
                                 return ('name');
                               }
+                              return null;
                             },
                           ),
                           SizedBox(
@@ -306,6 +308,7 @@ class _signupState extends State<signup> {
                                 // );
                                 return ('contact num?');
                               }
+                              return null;
                             },
                           ),
                           SizedBox(
@@ -337,6 +340,7 @@ class _signupState extends State<signup> {
                                 // );
                                 return ('age?');
                               }
+                              return null;
                             },
                           ),
                           SizedBox(
@@ -364,6 +368,7 @@ class _signupState extends State<signup> {
                                     horizontal: 40.0, vertical: 20.0),
                                 shape: BeveledRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
+                                // ignore: deprecated_member_use
                                 primary: Colors.deepPurple),
                           ),
                           SizedBox(
@@ -374,11 +379,13 @@ class _signupState extends State<signup> {
                               Get.to(login());
                             },
                             child: Text("Login"),
+                            // ignore: duplicate_ignore, duplicate_ignore
                             style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 40.0, vertical: 20.0),
                                 shape: BeveledRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0)),
+                                // ignore: deprecated_member_use
                                 primary: Colors.deepPurple),
                           )
                         ],

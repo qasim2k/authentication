@@ -65,6 +65,7 @@ class _resetpassState extends State<resetpass> {
                       );
                       return ('Enter Email to send reset link');
                     }
+                    return null;
                   },
                 ),
               ),
