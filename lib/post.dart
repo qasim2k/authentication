@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:date_format/date_format.dart';
 
 class post extends StatefulWidget {
   const post({super.key});
@@ -155,35 +154,35 @@ class _postState extends State<post> {
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                     ),
-                    onPressed: () {
+                    onPressed: () { var   imgurl;
                       getImage().whenComplete(() async {
-                        final imgurl = await uploadimg(_image!);
-                        ab = imgurl!;
+                        imgurl = await uploadimg(_image!);
+                       // ab = imgurl!;
                       }).whenComplete(() => postdata(
-                          data == null ? Text("loading") : data!['name'], ab));
+                          data == null ? Text("loading") : data!['name'], imgurl)).whenComplete(() => ab=null);
                     },
                     child: Icon(
                       color: Colors.blue.shade400,
                       Icons.photo,
                       size: 33,
                     )),
-                TextButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                    ),
-                    onPressed: () {
-                      getImagecamera().whenComplete(() async {
-                        final imgurl = await uploadimg(_image!);
-                        ab = imgurl!;
-                      }).whenComplete(() => postdata(
-                          data == null ? Text("loading") : data!['name'], ab));
-                    },
-                    child: Icon(
-                      color: Colors.blue.shade400,
-                      Icons.camera_alt,
-                      size: 33,
-                    )),
+                // TextButton(
+                //     style: ButtonStyle(
+                //       backgroundColor:
+                //           MaterialStateProperty.all<Color>(Colors.white),
+                //     ),
+                //     onPressed: () {
+                //       getImagecamera().whenComplete(() async {
+                //         final imgurl = await uploadimg(_image!);
+                //         ab = imgurl!;
+                //       }).whenComplete(() => postdata(
+                //           data == null ? Text("loading") : data!['name'], ab));
+                //     },
+                //     child: Icon(
+                //       color: Colors.blue.shade400,
+                //       Icons.camera_alt,
+                //       size: 33,
+                //     )),
               ],
             ),
           )
