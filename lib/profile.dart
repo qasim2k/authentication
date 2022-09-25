@@ -1,3 +1,4 @@
+import 'package:authentication/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,24 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+  // Map? data;
+  //  fetch()  {
+  //   //print("jk");
+  //   // data=await getdatafromstore.
+  //   // fetchdata();
+  //   setState(() {
+  //     print("hhhhhhhhhhhhhhhhhhh");
+  //    data =  getdatafromstore.fetchdata();
+  //     print("returned");
+  //    print(data.toString());
+  //    print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+  //   });
+
+  //   // print(data.toString());
+  // }
   Map? data;
   fetchdata() {
+    
     CollectionReference collectionReference = FirebaseFirestore.instance
         .collection //(teach == false? 'students': 'users');
         ('users');
@@ -23,25 +40,20 @@ class _profileState extends State<profile> {
         .doc(FirebaseAuth.instance.currentUser!.email)
         .snapshots()
         .listen((snapshot) {
-          if(snapshot.data()==null){
-           CircularProgressIndicator();
-          }
-
-          else{
-      setState(() {
+setState(() {
+  
 
         data = snapshot.data() as Map?;
-      });
-          }
-      print("jkjkjkjkjkjkjkj");
+           print("jkjkjkjkjkjkjkj");
       print(data.toString());
-    });
-  }
+      
+      });
+      });}
 
   @override
   void initState() {
-    
-    fetchdata();
+   // fetch();
+   fetchdata();
     super.initState();
   }
 
@@ -84,7 +96,7 @@ class _profileState extends State<profile> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     CircleAvatar(
-                      backgroundColor:  Color.fromARGB(174, 42, 55, 109),
+                      backgroundColor: Color.fromARGB(174, 42, 55, 109),
                       minRadius: 17.0,
                       child: InkWell(
                         onTap: () {
@@ -121,7 +133,8 @@ class _profileState extends State<profile> {
                         Icons.message,
                         size: 20.0,
                       ),
-                    ),CircleAvatar(
+                    ),
+                    CircleAvatar(
                       backgroundColor: Color.fromARGB(255, 135, 86, 107),
                       minRadius: 17.0,
                       child: Icon(
@@ -135,7 +148,7 @@ class _profileState extends State<profile> {
                   height: 10,
                 ),
                 Text(
-                  data!['name'],
+                  data == null ? "po" : data!['name'],
                   style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
@@ -209,9 +222,17 @@ class _profileState extends State<profile> {
           Container(
             child: Column(
               children: <Widget>[
-                 Image(
-            image: AssetImage('assets/images/mypic.jpeg'),)
-               // Divider(),
+                TextButton(
+                    onPressed: () {
+                      print("::::::::::::::::::");
+                        Get.to(post());
+                    },
+                    child: Text(
+                      "add post",
+                      style: TextStyle(color: Colors.black, fontSize: 32),
+                    ))
+                //Get.to(post());
+                // Divider(),
               ],
             ),
           )
@@ -220,3 +241,24 @@ class _profileState extends State<profile> {
     );
   }
 }
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
+
+// class profile extends StatefulWidget {
+//   const profile({super.key});
+
+//   @override
+//   State<profile> createState() => _profileState();
+// }
+
+// class _profileState extends State<profile> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Column(
+//         children: [Text("data")],
+//       ),
+//     );
+//   }
+// }

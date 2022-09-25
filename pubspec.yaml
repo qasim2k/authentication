@@ -40,6 +40,8 @@ dependencies:
   get: ^4.6.5
   lints: ^2.0.0
   cloud_firestore: ^3.4.7
+  date_format: ^2.0.7
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

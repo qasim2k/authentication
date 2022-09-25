@@ -12,7 +12,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override  
   void initState() {  
     super.initState();  
-    Timer(Duration(seconds: 10),  
+    Timer(Duration(seconds: 5),  
             ()=>Navigator.pushReplacement(context,  
             MaterialPageRoute(builder:  
                 (context) => login()  
@@ -26,8 +26,9 @@ class SplashScreenState extends State<SplashScreen> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.center,
         children: [  Padding(
           padding: const EdgeInsets.only(top:238.0),
-          child: Image.network("https://www.technig.com/wp-content/uploads/2017/03/how-to-create-css-preloader.gif"),
-        )
+          child:  Image(
+            image: AssetImage('assets/images/splash.gif'),
+          ), )
      
        ],),
       
