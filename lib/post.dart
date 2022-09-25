@@ -21,6 +21,16 @@ class _postState extends State<post> {
   final picker = ImagePicker();
   String? downloadUrl;
 //void adddata() {}
+  Future getImagecamera() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   Future uploadimg(File _image) async {
     String url;
@@ -97,6 +107,7 @@ class _postState extends State<post> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -106,7 +117,7 @@ class _postState extends State<post> {
               CircleAvatar(
                 radius: 40.0,
                 backgroundImage: NetworkImage(data == null
-                    ? 'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'
+                    ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFhSnoly9J1ySaRA45scYB4Q1otdhWAXtLlg&usqp=CAU'
                     : data!['images']),
               ),
               Text("  "),
@@ -135,18 +146,47 @@ class _postState extends State<post> {
           SizedBox(
             height: 13,
           ),
-          ElevatedButton(
-              onPressed: () {
-                getImage().whenComplete(() async {
-                  final imgurl = await uploadimg(_image!);
-                  ab = imgurl!;
-                }).whenComplete(() => postdata(
-                    data == null ? Text("loading") : data!['name'], ab));
-              },
-              child: Icon(
-                Icons.photo,
-                size: 23,
-              )),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
+                    onPressed: () {
+                      getImage().whenComplete(() async {
+                        final imgurl = await uploadimg(_image!);
+                        ab = imgurl!;
+                      }).whenComplete(() => postdata(
+                          data == null ? Text("loading") : data!['name'], ab));
+                    },
+                    child: Icon(
+                      color: Colors.blue.shade400,
+                      Icons.photo,
+                      size: 33,
+                    )),
+                TextButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
+                    onPressed: () {
+                      getImagecamera().whenComplete(() async {
+                        final imgurl = await uploadimg(_image!);
+                        ab = imgurl!;
+                      }).whenComplete(() => postdata(
+                          data == null ? Text("loading") : data!['name'], ab));
+                    },
+                    child: Icon(
+                      color: Colors.blue.shade400,
+                      Icons.camera_alt,
+                      size: 33,
+                    )),
+              ],
+            ),
+          )
           // InkWell(onTap: getImage().whenComplete(() {
           //                             uploadimg(_image!);
           //                           });

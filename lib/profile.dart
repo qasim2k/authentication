@@ -122,7 +122,7 @@ setState(() {
                       child: CircleAvatar(
                         radius: 50.0,
                         backgroundImage: NetworkImage(data == null
-                            ? 'https://avatars0.githubusercontent.com/u/28812093?s=460&u=06471c90e03cfd8ce2855d217d157c93060da490&v=4'
+                            ?'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFhSnoly9J1ySaRA45scYB4Q1otdhWAXtLlg&usqp=CAU'
                             : data!['images']),
                       ),
                     ),
